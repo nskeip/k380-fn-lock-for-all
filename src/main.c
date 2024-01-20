@@ -33,12 +33,12 @@ https://github.com/jergusg/k380-function-keys-conf/blob/master/k380_conf.c
 
 #define MAX_STR 255
 
-int main(int argc, char *argv[]) {
+int main(void) {
   int seq_len = 7;
   const unsigned char k380_seq_fkeys_on[] = {0x10, 0xff, 0x0b, 0x1e,
                                              0x00, 0x00, 0x00};
-  const unsigned char k380_seq_fkeys_off[] = {0x10, 0xff, 0x0b, 0x1e,
-                                              0x01, 0x00, 0x00};
+  // const unsigned char k380_seq_fkeys_off[] = {0x10, 0xff, 0x0b, 0x1e,
+  //                                             0x01, 0x00, 0x00};
   int k380_vid = 0x46d;
   int k380_pid = 0xb342;
   static const int TARGET_USAGE = 1;
@@ -46,8 +46,8 @@ int main(int argc, char *argv[]) {
 
   int res;
   int result = -1;
-  unsigned char buf[65];
-  wchar_t wstr[MAX_STR];
+  // unsigned char buf[65];
+  // wchar_t wstr[MAX_STR];
   hid_device *handle;
   struct hid_device_info *devs, *cur_dev;
 

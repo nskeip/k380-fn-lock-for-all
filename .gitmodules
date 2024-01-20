@@ -1,0 +1,4 @@
+[submodule "lib/hidapi"]
+	path = lib/hidapi
+	url = git@github.com:libusb/hidapi.git
+	ignore = all
