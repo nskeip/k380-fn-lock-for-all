@@ -53,14 +53,25 @@ int main(void) {
 
   // Initialize the hidapi library
   res = hid_init();
+  if (res < 0) {
+    fprintf(stderr, "hid_init failed with return code %d\n", res);
+    return -1;
+  }
 
   devs = hid_enumerate(k380_vid, k380_pid);
+  if (devs == NULL) {
+    fprintf(stderr, "No device found\n");
+  }
   cur_dev = devs;
 
   while (cur_dev) {
     if (cur_dev->usage == TARGET_USAGE &&
         cur_dev->usage_page == TARGET_USAGE_PAGE) {
       handle = hid_open_path(cur_dev->path);
+      if (!handle) {
+        fprintf(stderr, "unable to open device %s\n", cur_dev->path);
+        break;
+      }
 
 #ifdef setMediaKeys
       printf("Set media keys as default");
